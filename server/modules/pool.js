@@ -1,12 +1,12 @@
 const Pool = require("pg").Pool;
-//This will connect our database named tasks locally on postgres
+
 
 const pool = new Pool({
-    database:"tasks",
+    user:"franciscoblaslopez",
     host:"localhost",
-    port:5432,
-    max:10,
-    idleTimeoutMillis:30000
+    database:"weekend-to-do-app",
+    password:"password",
+    port:5432
 })
 pool.on('connect', () => {
     console.log('Postgresql connected');

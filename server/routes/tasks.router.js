@@ -1,25 +1,32 @@
+
 const express = require('express');
 const tasksRouter = express.Router();
+
+
+
+
 // DB CONNECTION
 
-const pool = require('../modules/pool');
+const pool = require('../modules/pool')
 
-//read request handler
 
-tasksRouter.get('/', (req, res) => {
-    let queryString = `SELECT * FROM "tasks";`
-    pool.query(queryString)
+
+tasksRouter.post('/', (req, res) => {
+    let taskName = req.body.name;
+    
+    let queryString = `
+      INSERT INTO "tasks" ("name") 
+      VALUES ($1);
+    `;
+    pool.query(queryString, [taskName])
       .then((results) => {
-        res.send(results.rows);
+        res.sendStatus(201)
       })
       .catch((err) => {
+          console.log(err);
         res.sendStatus(500);
-      })
+      });
   });
 
 
-
-
-
-
-  module.exports = tasksRouter;
+module.exports = tasksRouter;
