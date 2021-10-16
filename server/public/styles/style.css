@@ -1,3 +1,11 @@
-h1 {
-    color: green;
+.completed-task{
+    background: gray;
+}
+
+.incompleted-task{
+    background: green;
+}
+
+.check-off{
+    text-decoration: line-through;
 }
